@@ -33,8 +33,8 @@ class Forensic(object):
 
   def paternity_statistics(self):
     PoE = self.per_hetero*self.per_hetero*(1.0-2.0*self.per_hetero*
-      self.per_homo*self.per_homo/1000000)/10000.0
-    TPI = 0.5/(self.per_homo/100)
+      self.per_homo*self.per_homo/1000000.0)/10000.0
+    TPI = 0.5/(self.per_homo/100.0)
 
     return PoE, TPI
 
