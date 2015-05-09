@@ -1,7 +1,7 @@
 '''
 This class will be used to load the csv input file.
 '''
-
+import csv
 class Load(object):
   '''
   A description of the class.
@@ -24,3 +24,9 @@ class Load(object):
     f.close()
 
     return data
+
+  def down(self, result):
+    with open("output.csv", "wb") as f:
+      writer = csv.writer(f)
+      writer.writerows(result)
+    print 'csv output'

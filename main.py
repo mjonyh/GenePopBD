@@ -18,6 +18,9 @@ r_per_hetero = ['Per Hetero']
 r_poe = ['PoE']
 r_tpi = ['TPI']
 r_allele = ['Allele']
+r_pic = ['PIC']
+r_mp = ['MP']
+r_pod = ['PoD']
 
 for j in range(1, len(data[0])-1,2):
   allele_l = []
@@ -64,6 +67,12 @@ for j in range(1, len(data[0])-1,2):
 
   freq_calc = forensic.freq_calc()
   r_allele.append(freq_calc[1])
+  r_pic.append(freq_calc[6])
+
+  geno_calc = forensic.geno_calc()
+
+  r_mp.append(geno_calc[4])
+  r_pod.append(geno_calc[5])
   '''
   
   print '\n \t Frequency Calculations'
@@ -107,5 +116,7 @@ print 'TPI: Typical Paternity Index'
 print '\n'
 
 for i in range(len(r_locas)):
-  print r_locas[i], '    \t', r_homo[i], r_per_homo[i], '\t', r_hetero[i], r_per_hetero[i], '\t', r_poe[i], r_tpi[i]
+  print r_locas[i], '    \t', r_homo[i], r_per_homo[i], '\t', r_hetero[i], r_per_hetero[i], '\t', r_poe[i], r_tpi[i], r_pic[i], r_mp[i],r_pod[i]
 
+
+csv_file.down([r_locas, r_homo, r_per_homo, r_hetero, r_per_hetero, r_poe, r_tpi, r_pic, r_mp,r_pod])
