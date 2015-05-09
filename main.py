@@ -22,12 +22,14 @@ r_allele = ['Allele']
 for j in range(1, len(data[0])-1,2):
   allele_l = []
   allele_r = []
+  allele_g = []
 
   for i in range(1,len(data)):
     allele_l.append(data[i][j])
     allele_r.append(data[i][j+1])
+    allele_g.append(data[i][j]+','+data[i][j+1])
 
-  forensic = Forensic(allele_l, allele_r)
+  forensic = Forensic(allele_l, allele_r, allele_g)
 
   per_homo_hetero = forensic.per_homo_hetero()
 
@@ -67,8 +69,10 @@ for j in range(1, len(data[0])-1,2):
   print '\n \t Frequency Calculations'
   print '\t --------------------------'
   print '\t Total allele = ', freq_calc[0]
+  print '\t PIC = ', freq_calc[6]
   print '\t Table for frequency '
   print '\t --------------------------'
+
   print '\n \t Allele \t Frequency \t Percent'
   '''
   '''
@@ -104,3 +108,4 @@ print '\n'
 
 for i in range(len(r_locas)):
   print r_locas[i], '    \t', r_homo[i], r_per_homo[i], '\t', r_hetero[i], r_per_hetero[i], '\t', r_poe[i], r_tpi[i]
+
