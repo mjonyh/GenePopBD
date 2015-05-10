@@ -32,78 +32,39 @@ for j in range(1, len(data[0])-1,2):
     allele_r.append(data[i][j+1])
     allele_g.append(data[i][j]+','+data[i][j+1])
 
+  'Initiating forensic class'
+
   forensic = Forensic(allele_l, allele_r, allele_g)
 
   per_homo_hetero = forensic.per_homo_hetero()
+
+  'Saving locas, homo, hetero in array'
 
   r_locas.append(data[0][j])
   r_homo.append(per_homo_hetero[1])
   r_per_homo.append(per_homo_hetero[3])
   r_hetero.append(per_homo_hetero[2])
   r_per_hetero.append(per_homo_hetero[4])
-  
-  '''
-  print '\n'
-  print 'Locus: ', data[0][j]
-  print '--------------------------'
-  print '\n \t Summary'
-  print '\t --------------------------'
-  print '\t Total = ', per_homo_hetero[0]
-  print '\t Homos = ', per_homo_hetero[1], '\t Percent = ', per_homo_hetero[3] 
-  print '\t Heteros = ', per_homo_hetero[2], '\t Percent = ', per_homo_hetero[4]
-  '''
+
+  'Saving Power of exclusion and Typical Peternity Index in array'
 
   pat_stats = forensic.paternity_statistics()
 
   r_poe.append(pat_stats[0])
   r_tpi.append(pat_stats[1])
-  '''
 
-  print '\n \t Paternity Statistics'
-  print '\t --------------------------'
-  print '\t Power of exclusion = ', pat_stats[0]
-  print '\t Typical paternity index = ', pat_stats[1]
-  '''
+  'Saving Allele and PIC in array'
 
   freq_calc = forensic.freq_calc()
   r_allele.append(freq_calc[1])
   r_pic.append(freq_calc[6])
 
+  'Saving Maching Probability and PoD in array'
+
   geno_calc = forensic.geno_calc()
 
   r_mp.append(geno_calc[4])
   r_pod.append(geno_calc[5])
-  '''
-  
-  print '\n \t Frequency Calculations'
-  print '\t --------------------------'
-  print '\t Total allele = ', freq_calc[0]
-  print '\t PIC = ', freq_calc[6]
-  print '\t Table for frequency '
-  print '\t --------------------------'
-
-  print '\n \t Allele \t Frequency \t Percent'
-  '''
-  '''
-  for k in range(len(freq_calc[1])):
-    print '\t',freq_calc[1][k], '\t', freq_calc[2][k], '\t', freq_calc[3][k]
-  '''
-'''
-new_allele = [[1,2,3,4],[11,22,33,44]]
-print new_allele
-new_allele[0].pop(2)
-print new_allele
-'''
-'''
-for i in range(2, len(r_allele)):
-  for k in range(len(r_allele[i])):
-    for j in range(len(r_allele[i-1])):
-      if r_allele[i-1][j] == r_allele[i][k]:
-        r_allele[i].pop()
-        print j, row
-      
-  print r_allele[i]
-'''
 
 print 'Short description'
 print '------------------'
@@ -118,5 +79,5 @@ print '\n'
 for i in range(len(r_locas)):
   print r_locas[i], '    \t', r_homo[i], r_per_homo[i], '\t', r_hetero[i], r_per_hetero[i], '\t', r_poe[i], r_tpi[i], r_pic[i], r_mp[i],r_pod[i]
 
-
+'Writting output file in csv format'
 csv_file.down([r_locas, r_homo, r_per_homo, r_hetero, r_per_hetero, r_poe, r_tpi, r_pic, r_mp,r_pod])
