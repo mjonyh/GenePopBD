@@ -9,6 +9,8 @@ This is the todo file that contain the information about the job needs to be don
 7. Calculate Power of Discrimination. (completed)
 8. Calculate PIC. (completed)
 9. Make a output file in CSV. (completed)
+10. Calculate Garo with respect to frequency of allele
+11. Sort the Garo with respect to frequency in final output
 
 Bug:
 1. If one of the element of each pair in a locus is missing, the pair will be excluded in the rest of the calculations.
