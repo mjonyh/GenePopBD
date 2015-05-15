@@ -1,14 +1,19 @@
 class Forensic(object):
   '''
   Forensic parameter calculation.
+  Methods:
+    per_homo_hetero: calculate the homo and hetero in percent
+    find_homo_hetero: calculate the number of homo and hetero in allele
+    peternity_statistics: calculate PoE and TPI
+    freq_calc: calculate the frequency of the allele
+    geno_calc: calculate the PIC
+    check: function to check the errors in input file
   '''
 
   def __init__(self, a, b, c):
     self.a = a
     self.b = b
     self.c = c
-
-    self.check()
 
     self.total = len(self.a)
     self.homo = 0
@@ -17,6 +22,7 @@ class Forensic(object):
     self.per_homo = 0
     self.per_hetero = 0
     self.total_genotype = 0
+    self.check()
 
   def per_homo_hetero(self):
     self.find_homo_hetero()
@@ -100,6 +106,20 @@ class Forensic(object):
 
   'Functions for checking data file'
   def check(self):
+    'Bug 1: fix start'
+    miss_allele_id = []
+    for i in range(self.total):
+      if self.a[i] =='' or self.b[i]=='':
+        miss_allele_id.append(i)
+    
+    for x in miss_allele_id:
+      print x
+      print self.a.pop(x)
+      print self.b.pop(x)
+      self.total = self.total - 1
+
+    'But 1: fix end'
+
     if len(self.a) != len(self.b):
       print "Alleles are not equal."
       return
