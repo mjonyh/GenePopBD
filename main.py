@@ -17,10 +17,11 @@ r_per_hetero = ['Per Hetero']
 
 r_poe = ['PoE']
 r_tpi = ['TPI']
-r_allele = ['Allele']
+r_allele = []
 r_pic = ['PIC']
 r_mp = ['MP']
 r_pod = ['PoD']
+r_freq =[]
 
 for j in range(1, len(data[0])-1,2):
   allele_l = []
@@ -56,8 +57,30 @@ for j in range(1, len(data[0])-1,2):
   'Saving Allele and PIC in array'
 
   freq_calc = forensic.freq_calc()
-  r_allele.append(freq_calc[1])
+  
   r_pic.append(freq_calc[6])
+
+  for i in freq_calc[1]:
+    tag = 0
+    for j in r_allele:
+      if i == j:
+        tag = 1
+    if tag == 0:
+      r_allele.append(i)
+
+
+  temp_freq = []
+  for i in range(len(r_allele)):
+    temp_freq.append('')
+
+  for i in range(len(freq_calc[1])):
+    
+    for k in range(len(r_allele)):
+      if r_allele[k] == freq_calc[1][i]:
+        temp_freq[k] = freq_calc[3][i]
+
+  r_freq.append(temp_freq)
+  'r_freq[1].append(freq_calc[3])'
 
   'Saving Maching Probability and PoD in array'
 
@@ -81,3 +104,6 @@ for i in range(len(r_locas)):
 
 'Writting output file in csv format'
 csv_file.down([r_locas, r_homo, r_per_homo, r_hetero, r_per_hetero, r_poe, r_tpi, r_pic, r_mp,r_pod])
+
+r_freq.append(r_allele)
+csv_file.down(r_freq)

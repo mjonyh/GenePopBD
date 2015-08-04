@@ -113,9 +113,8 @@ class Forensic(object):
         miss_allele_id.append(i)
     
     for x in miss_allele_id:
-      print x
-      print self.a.pop(x)
-      print self.b.pop(x)
+      self.a.pop(x)
+      self.b.pop(x)
       self.total = self.total - 1
 
     'But 1: fix end'
